@@ -1,10 +1,11 @@
 TAG    = $(shell git rev-parse --short HEAD)
 BRANCH = $(shell git branch --show-current)
+IGNORE = -x "*.git*" -x "*terraform*" -x "*~" -x "*.zip"
 
 zip: check docs
 	$(shell [ $(BRANCH) == 'default' ])
-	zip -r  ../zips/$(notdir $(CURDIR))-$(BRANCH)-$(TAG).zip . -x "*.git*" -x "*terraform*" -x "*~"
-	zip -r  ../zips/$(notdir $(CURDIR)).zip . -x "*.git*" -x "*terraform*" -x "*~"
+	zip -r ../zips/$(notdir $(CURDIR)).zip . $(IGNORE)
+	zip -r ../zips/$(notdir $(CURDIR))-$(BRANCH)-$(TAG).zip . $(IGNORE)
 	ls -ltr ../zips/
 
 clean:
