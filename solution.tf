@@ -42,14 +42,15 @@ resource "aws_s3_bucket_object" "css" {
   bucket       = aws_s3_bucket.solution.id
   key          = each.value
   source       = "${path.module}/${each.value}"
-  content_type = "text/html"
+  content_type = "text/css"
 }
 
 resource "aws_s3_bucket_object" "images" {
-  for_each = fileset(path.module, "website/images/**")
-  bucket   = aws_s3_bucket.solution.id
-  key      = each.value
-  source   = "${path.module}/${each.value}"
+  for_each     = fileset(path.module, "website/images/**")
+  bucket       = aws_s3_bucket.solution.id
+  key          = each.value
+  source       = "${path.module}/${each.value}"
+  content_type = "image/png"
 }
 
 resource "aws_s3_bucket_object" "js" {
@@ -57,12 +58,13 @@ resource "aws_s3_bucket_object" "js" {
   bucket       = aws_s3_bucket.solution.id
   key          = each.value
   source       = "${path.module}/${each.value}"
-  content_type = "text/html"
+  content_type = "text/javascript"
 }
 
 resource "aws_s3_bucket_object" "fonts" {
-  for_each = fileset(path.module, "website/fonts/**")
-  bucket   = aws_s3_bucket.solution.id
-  key      = each.value
-  source   = "${path.module}/${each.value}"
+  for_each     = fileset(path.module, "website/fonts/**")
+  bucket       = aws_s3_bucket.solution.id
+  key          = each.value
+  source       = "${path.module}/${each.value}"
+  content_type = "image/svg+xml"
 }
