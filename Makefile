@@ -20,4 +20,6 @@ check:
 		exit 99; \
 	fi
 
-.PHONY: zip clean
+all: clean zip
+
+.PHONY: zip clean docs check all
