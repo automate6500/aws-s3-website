@@ -68,3 +68,8 @@ resource "aws_s3_bucket_object" "fonts" {
   source       = "${path.module}/${each.value}"
   content_type = "image/svg+xml"
 }
+
+output "website_endpoint" {
+  description = "The website endpoint, if the bucket is configured with a website. If not, this will be an empty string."
+  value       = aws_s3_bucket.solution.website_endpoint
+}
